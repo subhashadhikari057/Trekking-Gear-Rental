@@ -8,6 +8,7 @@ import BrowseGearPage from './pages/BrowseGearPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import { Toaster } from 'react-hot-toast';
 import CheckoutPage from './pages/CheckoutPage';
+import KhaltiSuccess from './pages/KhaltiSuccess';
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
           <Route path="/browse-gear" element={<BrowseGearPage />} />
           <Route path="/gear/:id" element={<ProductDetailPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/khalti-success" element={<KhaltiSuccess />} />
+
 
         </Routes>
       </div>
