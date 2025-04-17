@@ -24,6 +24,8 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+
 
 
 
@@ -34,6 +36,7 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/orders', orderRoutes);
 
 
 // Test Route

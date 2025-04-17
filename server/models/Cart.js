@@ -1,4 +1,3 @@
-// models/Cart.js
 const mongoose = require('mongoose');
 
 const cartItemSchema = new mongoose.Schema({
@@ -21,7 +20,7 @@ const cartItemSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
-}, { _id: false });
+}); // ✅ don't disable _id!
 
 const cartSchema = new mongoose.Schema({
   user: {

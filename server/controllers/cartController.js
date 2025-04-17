@@ -43,32 +43,48 @@ const updateCartItem = async (req, res) => {
   const { itemId } = req.params;
   const { quantity, rentalDays } = req.body;
 
-  const cart = await Cart.findOne({ user: req.user._id });
-  if (!cart) return res.status(404).json({ message: 'Cart not found' });
+  try {
+    const cart = await Cart.findOne({ user: req.user._id });
+    if (!cart) return res.status(404).json({ message: 'Cart not found' });
 
-  const item = cart.items.id(itemId);
-  if (!item) return res.status(404).json({ message: 'Cart item not found' });
+    const item = cart.items.id(itemId);
+    if (!item) return res.status(404).json({ message: 'Cart item not found' });
 
-  const product = await Product.findById(item.product);
-  item.quantity = quantity;
-  item.rentalDays = rentalDays;
-  item.subtotal = product.pricePerDay * quantity * rentalDays;
+    const product = await Product.findById(item.product);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
 
-  const updatedCart = await cart.save();
-  res.json(updatedCart);
+    item.quantity = quantity;
+    item.rentalDays = rentalDays;
+    item.subtotal = product.pricePerDay * quantity * rentalDays;
+
+    await cart.save();
+    res.json({ message: 'Item updated successfully' });
+  } catch (err) {
+    console.error('Update error:', err.message);
+    res.status(500).json({ message: 'Failed to update item' });
+  }
 };
 
 // @desc Remove cart item
 const removeCartItem = async (req, res) => {
   const { itemId } = req.params;
 
-  const cart = await Cart.findOne({ user: req.user._id });
-  if (!cart) return res.status(404).json({ message: 'Cart not found' });
+  try {
+    const cart = await Cart.findOne({ user: req.user._id });
+    if (!cart) return res.status(404).json({ message: 'Cart not found' });
 
-  cart.items = cart.items.filter(item => item._id.toString() !== itemId);
+    const itemIndex = cart.items.findIndex(item => item._id.toString() === itemId);
+    if (itemIndex === -1) {
+      return res.status(404).json({ message: 'Item not found in cart' });
+    }
 
-  const updatedCart = await cart.save();
-  res.json(updatedCart);
+    cart.items.splice(itemIndex, 1);
+    await cart.save();
+    res.json({ message: 'Item removed successfully' });
+  } catch (err) {
+    console.error('Remove error:', err.message);
+    res.status(500).json({ message: 'Failed to remove item' });
+  }
 };
 
 module.exports = {

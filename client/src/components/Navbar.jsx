@@ -1,33 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaShoppingCart, FaUserCircle } from 'react-icons/fa';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const { isLoggedIn, role, logout } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
-    if (token) {
-      setIsLoggedIn(true);
-      setUserRole(role);
-    }
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    setIsLoggedIn(false);
-    setUserRole(null);
+    logout();
     navigate('/');
   };
 
   const handleAvatarClick = () => {
-    if (userRole === 'admin') {
+    if (role === 'admin') {
       setShowDropdown(!showDropdown);
     } else {
       navigate('/profile');
@@ -63,7 +51,7 @@ const Navbar = () => {
             <div onClick={handleAvatarClick} className="cursor-pointer relative">
               <FaUserCircle className="text-lg hover:text-[#4f45e4]" />
               {/* Admin Dropdown */}
-              {userRole === 'admin' && showDropdown && (
+              {role === 'admin' && showDropdown && (
                 <div className="absolute top-8 right-0 bg-white shadow-lg rounded-md w-40 py-2 z-50">
                   <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
                   <Link to="/admin/dashboard" className="block px-4 py-2 hover:bg-gray-100">Dashboard</Link>
