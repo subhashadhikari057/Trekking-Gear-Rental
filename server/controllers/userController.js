@@ -57,8 +57,57 @@ const getProfile = async (req, res) => {
   }
 };
 
+// @desc    Get all users (admin only)
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password'); // exclude password field
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch users' });
+  }
+};
+
+// @desc    Update user role (admin only)
+const updateUserRole = async (req, res) => {
+  const { role } = req.body;
+
+  if (!['user', 'admin'].includes(role)) {
+    return res.status(400).json({ message: 'Invalid role provided' });
+  }
+
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    user.role = role;
+    await user.save();
+    res.json({ message: `User role updated to ${role}` });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to update user role' });
+  }
+};
+
+
+// @desc Delete a user by ID (Admin only)
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    await user.deleteOne();
+    res.json({ message: 'User deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to delete user', error: err.message });
+  }
+};
+
+
+
 module.exports = {
   registerUser,
   loginUser,
-  getProfile
+  getProfile,
+  getAllUsers,
+  updateUserRole,
+  deleteUser,
 };

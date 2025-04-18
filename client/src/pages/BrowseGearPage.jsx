@@ -42,7 +42,7 @@ const BrowseGearPage = () => {
   }, [selectedCategory, selectedSort, selectedAvailability]);
 
   const getAvailabilityText = (status) => (status ? 'Available' : 'Out of Stock');
-  const getAvailabilityColor = (status) => (status ? 'text-green-600' : 'text-blue-600');
+  const getAvailabilityColor = (status) => (status ? 'text-green-600' : 'text-red-600');
 
   return (
     <div className="min-h-screen px-4 md:px-10 py-6 bg-gray-50">

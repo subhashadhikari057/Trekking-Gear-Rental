@@ -13,6 +13,20 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import CheckoutPage from './pages/CheckoutPage';
 import KhaltiSuccess from './pages/KhaltiSuccess';
 import RoleBasedDashboard from './pages/Dashboard'; // ✅ path based on your project
+import AdminOrdersPage from './pages/AdminOrdersPage';
+import AdminUsers from './pages/AdminUsers';
+import AdminAllProducts from './pages/AdminAllProducts';
+import AdminAddProduct from './pages/AdminAddProduct';
+
+
+
+
+
+
+
+
+
+
 
 
 function AppContent() {
@@ -51,6 +65,11 @@ function AppContent() {
           <Route path="/khalti-success" element={<KhaltiSuccess />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/dashboard" element={<RoleBasedDashboard />} />
+          <Route path="/admin/orders" element={<AdminOrdersPage />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/products" element={<AdminAllProducts />} />
+          <Route path="/admin/add-product" element={<AdminAddProduct />} />
+
           
           
         </Routes>
