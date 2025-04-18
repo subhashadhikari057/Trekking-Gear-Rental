@@ -1,21 +1,41 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Splash from './components/Splash';
+import { Toaster } from 'react-hot-toast';
+
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import CartPage from './pages/CartPage';
 import BrowseGearPage from './pages/BrowseGearPage';
 import ProductDetailPage from './pages/ProductDetailPage';
-import { Toaster } from 'react-hot-toast';
 import CheckoutPage from './pages/CheckoutPage';
 import KhaltiSuccess from './pages/KhaltiSuccess';
 
+function AppContent() {
+  const location = useLocation();
+  const [showSplash, setShowSplash] = useState(false);
 
-function App() {
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setShowSplash(true);
+      const timer = setTimeout(() => {
+        setShowSplash(false);
+      }, 2500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowSplash(false);
+    }
+  }, [location.pathname]);
+
+  if (showSplash) {
+    return <Splash />;
+  }
+
   return (
     <>
-    <Toaster position="top-right" />
-    <Router>
+      {/* Only show Navbar when not on splash */}
       <Navbar />
       <div className="p-4">
         <Routes>
@@ -27,11 +47,19 @@ function App() {
           <Route path="/gear/:id" element={<ProductDetailPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/khalti-success" element={<KhaltiSuccess />} />
-
-
         </Routes>
       </div>
-    </Router>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Toaster position="top-right" />
+      <Router>
+        <AppContent />
+      </Router>
     </>
   );
 }
