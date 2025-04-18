@@ -1,6 +1,7 @@
 const Order = require('../models/order');
 const Cart = require('../models/Cart');
 
+// @desc Create a new order
 const createOrder = async (req, res) => {
   try {
     const { name, address, phone, paymentMethod } = req.body;
@@ -24,11 +25,10 @@ const createOrder = async (req, res) => {
       address,
       phone,
       paymentMethod,
-      isPaid: paymentMethod === 'Khalti', // simulate payment for Khalti
+      isPaid: paymentMethod === 'Khalti',
       status: 'Pending'
     });
 
-    // Clear cart after placing order
     await Cart.deleteOne({ user: req.user._id });
 
     res.status(201).json(order);
@@ -37,11 +37,30 @@ const createOrder = async (req, res) => {
   }
 };
 
+// @desc Get all orders (Admin only)
 const getOrders = async (req, res) => {
-  const orders = await Order.find()
-    .populate('user', 'name email') // only fetch user name and email
-    .populate('items.product');
-  res.json(orders);
+  try {
+    const orders = await Order.find()
+      .populate('user', 'name email')
+      .populate('items.product');
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch all orders' });
+  }
 };
 
-module.exports = { createOrder, getOrders };
+// @desc Get logged-in user's own orders
+const getMyOrders = async (req, res) => {
+  try {
+    const myOrders = await Order.find({ user: req.user._id }).populate('items.product');
+    res.json(myOrders);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch your orders' });
+  }
+};
+
+module.exports = {
+  createOrder,
+  getOrders,
+  getMyOrders
+};

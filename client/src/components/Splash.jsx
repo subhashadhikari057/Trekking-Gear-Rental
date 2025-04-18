@@ -56,7 +56,7 @@ function FloatingBubbles() {
   )
 }
 
-export default function FloatingBubblesBackground({ title = "Floating Bubbles" }) {
+export default function FloatingBubblesBackground({ title = "Trekking Gear Rental " }) {
   const words = title.split(" ")
 
   return (

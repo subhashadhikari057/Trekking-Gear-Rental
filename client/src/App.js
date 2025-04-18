@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar';
 import Splash from './components/Splash';
 import { Toaster } from 'react-hot-toast';
-
+import ProfilePage from './pages/Profile';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -12,6 +12,8 @@ import BrowseGearPage from './pages/BrowseGearPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CheckoutPage from './pages/CheckoutPage';
 import KhaltiSuccess from './pages/KhaltiSuccess';
+import RoleBasedDashboard from './pages/Dashboard'; // ✅ path based on your project
+
 
 function AppContent() {
   const location = useLocation();
@@ -47,6 +49,10 @@ function AppContent() {
           <Route path="/gear/:id" element={<ProductDetailPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/khalti-success" element={<KhaltiSuccess />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/dashboard" element={<RoleBasedDashboard />} />
+          
+          
         </Routes>
       </div>
     </>

@@ -5,8 +5,7 @@ import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const { isLoggedIn, role, logout } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -15,11 +14,7 @@ const Navbar = () => {
   };
 
   const handleAvatarClick = () => {
-    if (role === 'admin') {
-      setShowDropdown(!showDropdown);
-    } else {
-      navigate('/profile');
-    }
+    navigate('/profile');
   };
 
   return (
@@ -28,7 +23,7 @@ const Navbar = () => {
       <Link to="/" className="text-2xl font-bold text-[#4f45e4]">TrailGear</Link>
 
       {/* Desktop Menu */}
-      <nav className={`hidden md:flex space-x-8 font-medium`}>
+      <nav className="hidden md:flex space-x-8 font-medium">
         <Link to="/browse-gear" className="hover:text-[#4f45e4]">Browse Gear</Link>
         <Link to="/how-it-works" className="hover:text-[#4f45e4]">How It Works</Link>
         <Link to="/about" className="hover:text-[#4f45e4]">About Us</Link>
@@ -37,29 +32,21 @@ const Navbar = () => {
 
       {/* Right Side */}
       <div className="flex items-center space-x-4">
-        {/* Icons */}
-        <div className="flex items-center space-x-4">
-          <Link to="/search">
-            <FaSearch className="text-lg hover:text-[#4f45e4]" />
+        <Link to="/search">
+          <FaSearch className="text-lg hover:text-[#4f45e4]" />
+        </Link>
+
+        {isLoggedIn && (
+          <Link to="/cart">
+            <FaShoppingCart className="text-lg hover:text-[#4f45e4]" />
           </Link>
-          {isLoggedIn && (
-            <Link to="/cart">
-              <FaShoppingCart className="text-lg hover:text-[#4f45e4]" />
-            </Link>
-          )}
-          {isLoggedIn && (
-            <div onClick={handleAvatarClick} className="cursor-pointer relative">
-              <FaUserCircle className="text-lg hover:text-[#4f45e4]" />
-              {/* Admin Dropdown */}
-              {role === 'admin' && showDropdown && (
-                <div className="absolute top-8 right-0 bg-white shadow-lg rounded-md w-40 py-2 z-50">
-                  <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
-                  <Link to="/admin/dashboard" className="block px-4 py-2 hover:bg-gray-100">Dashboard</Link>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+        )}
+
+        {isLoggedIn && (
+          <div onClick={handleAvatarClick} className="cursor-pointer">
+            <FaUserCircle className="text-lg hover:text-[#4f45e4]" />
+          </div>
+        )}
 
         {/* Auth Buttons */}
         {!isLoggedIn ? (
