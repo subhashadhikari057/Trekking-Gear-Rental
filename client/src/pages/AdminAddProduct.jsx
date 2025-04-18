@@ -3,6 +3,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export default function AdminAddProduct() {
   const [formData, setFormData] = useState({
@@ -18,6 +20,10 @@ export default function AdminAddProduct() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleDescriptionChange = (value) => {
+    setFormData((prev) => ({ ...prev, description: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -68,14 +74,12 @@ export default function AdminAddProduct() {
         </div>
 
         <div>
-          <label className="block font-medium">Description</label>
-          <textarea
-            name="description"
+          <label className="block font-medium mb-1">Description</label>
+          <ReactQuill
             value={formData.description}
-            onChange={handleChange}
-            className="w-full border px-3 py-2 rounded"
-            rows={3}
-            required
+            onChange={handleDescriptionChange}
+            className="bg-white"
+            theme="snow"
           />
         </div>
 
