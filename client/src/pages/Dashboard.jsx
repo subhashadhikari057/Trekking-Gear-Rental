@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
+
+
 export default function Dashboard() {
   const [role, setRole] = useState(null);
   const [orders, setOrders] = useState([]);
@@ -70,6 +72,13 @@ export default function Dashboard() {
               <PlusCircle className="w-6 h-6" />
               Add Product
             </button>
+            {/* <button
+    onClick={() => navigate('/admin/chat')}
+    className="bg-[#4f45e4] hover:bg-[#4338ca] text-white py-6 rounded flex flex-col items-center justify-center gap-2"
+  >
+    <FaComments className="w-6 h-6" />
+    Chat Support
+  </button> */}
           </div>
         </div>
       )}

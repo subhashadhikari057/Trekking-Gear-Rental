@@ -1,3 +1,4 @@
+// src/App.js
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -12,28 +13,23 @@ import BrowseGearPage from './pages/BrowseGearPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CheckoutPage from './pages/CheckoutPage';
 import KhaltiSuccess from './pages/KhaltiSuccess';
-import RoleBasedDashboard from './pages/Dashboard'; // ✅ path based on your project
+import RoleBasedDashboard from './pages/Dashboard';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import AdminUsers from './pages/AdminUsers';
 import AdminAllProducts from './pages/AdminAllProducts';
 import AdminAddProduct from './pages/AdminAddProduct';
-
-
-
-
-
-
-
-
-
-
+import AdminChat from './pages/AdminChat'; // ✅ Import
+import ChatWidget from './components/ChatWidget'; // ✅ Correct default import
 
 
 function AppContent() {
   const location = useLocation();
   const [showSplash, setShowSplash] = useState(false);
+  const [isClient, setIsClient] = useState(false); // ✅ track mount status
 
   useEffect(() => {
+    setIsClient(true); // ✅ ensures ChatWidget renders only on client
+
     if (location.pathname === '/') {
       setShowSplash(true);
       const timer = setTimeout(() => {
@@ -51,7 +47,6 @@ function AppContent() {
 
   return (
     <>
-      {/* Only show Navbar when not on splash */}
       <Navbar />
       <div className="p-4">
         <Routes>
@@ -69,10 +64,11 @@ function AppContent() {
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/products" element={<AdminAllProducts />} />
           <Route path="/admin/add-product" element={<AdminAddProduct />} />
-
-          
-          
+          <Route path="/admin/chat" element={<AdminChat />} />
         </Routes>
+
+        {/* ✅ Only render chat widget after hydration */}
+        {isClient && <ChatWidget />}
       </div>
     </>
   );
