@@ -20,6 +20,9 @@ import AdminAllProducts from './pages/AdminAllProducts';
 import AdminAddProduct from './pages/AdminAddProduct';
 import AdminChat from './pages/AdminChat'; // ✅ Import
 import ChatWidget from './components/ChatWidget'; // ✅ Correct default import
+import Footer from './components/Footer';
+
+
 
 
 function AppContent() {
@@ -70,6 +73,7 @@ function AppContent() {
         {/* ✅ Only render chat widget after hydration */}
         {isClient && <ChatWidget />}
       </div>
+      <Footer />
     </>
   );
 }
