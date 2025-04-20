@@ -22,9 +22,6 @@ import AdminChat from './pages/AdminChat'; // ✅ Import
 import ChatWidget from './components/ChatWidget'; // ✅ Correct default import
 import Footer from './components/Footer';
 
-
-
-
 function AppContent() {
   const location = useLocation();
   const [showSplash, setShowSplash] = useState(false);
@@ -42,6 +39,11 @@ function AppContent() {
     } else {
       setShowSplash(false);
     }
+  }, [location.pathname]);
+
+  // ✅ Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   if (showSplash) {

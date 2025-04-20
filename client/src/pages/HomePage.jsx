@@ -1,6 +1,15 @@
+import VideoHero from "../components/HeroSection";
+import CategorySection from "../components/CategorySection";
+import TopDestinations from "../components/TopDestinations";
+
 const HomePage = () => {
-    return <div className="text-center mt-10 text-2xl font-bold">Home Page</div>;
-  };
-  
-  export default HomePage;
-  
+  return (
+    <div>
+      <VideoHero />
+      <CategorySection />
+      <TopDestinations /> {/* 👈 Add here */}
+    </div>
+  );
+};
+
+export default HomePage;
