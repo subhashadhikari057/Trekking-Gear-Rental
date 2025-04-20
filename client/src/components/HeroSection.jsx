@@ -25,7 +25,7 @@ const Button = ({ children, onClick, className = "", variant = "default", size =
 export default function VideoHero() {
   return (
     <section 
-      className="relative w-full overflow-hidden h-[80vh]" 
+      className="relative w-full overflow-hidden h-[90vh]" 
       // 🔧 Adjusted height: you can change h-[80vh] as needed
     >
       {/* Video Background */}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { ChevronLeft, ChevronRight, Mountain, Backpack } from "lucide-react"
+import { motion } from "framer-motion"
 
 const destinations = [
   {
@@ -112,15 +113,29 @@ const TopDestinations = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2 flex items-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.6 }}
+              transition={{ duration: 0.9, ease: [0.2, 0.65, 0.3, 0.9] }}
+              className="text-3xl md:text-4xl font-bold text-slate-900 mb-2 flex items-center"
+            >
               <Mountain className="mr-2 h-8 w-8 text-[#4f45e4]" />
               Top Trekking Destinations in Nepal
-            </h2>
-            <p className="text-slate-600 max-w-2xl">
-              Explore Nepal's most breathtaking trails with TrailGear's premium equipment rental service. Trek with
-              confidence knowing you have the right gear for every adventure.
-            </p>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.6 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-slate-600 max-w-2xl"
+            >
+              Explore Nepal's most breathtaking trails with TrailGear's premium equipment rental service.
+              Trek with confidence knowing you have the right gear for every adventure.
+            </motion.p>
           </div>
+
           <div className="flex items-center mt-4 md:mt-0">
             <button
               onClick={() => navigate("/browse-gear")}
@@ -182,19 +197,18 @@ const TopDestinations = () => {
                           <li key={i}>{gear}</li>
                         ))}
                       </ul>
-                      {/* ✅ New CTA section */}
-  <div className="mt-5 text-center">
-    <p className="text-sm text-[#4f45e4] font-medium mb-2">
-      Explore this place with TrailGear
-    </p>
-    <button
-      onClick={() => navigate("/browse-gear")}
-      className="flex items-center justify-center gap-2 px-4 py-2 text-sm border border-black rounded hover:bg-black hover:text-white transition"
-    >
-      <Backpack className="h-4 w-4" />
-      Browse Gear
-    </button>
-  </div>
+                      <div className="mt-5 text-center">
+                        <p className="text-sm text-[#4f45e4] font-medium mb-2">
+                          Explore this place with TrailGear
+                        </p>
+                        <button
+                          onClick={() => navigate("/browse-gear")}
+                          className="flex items-center justify-center gap-2 px-4 py-2 text-sm border border-black rounded hover:bg-black hover:text-white transition"
+                        >
+                          <Backpack className="h-4 w-4" />
+                          Browse Gear
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
