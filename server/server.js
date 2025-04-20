@@ -23,6 +23,8 @@ const chatRoutes = require('./routes/chatRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const reviewRoutes = require("./routes/reviewRoutes")
+
 
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
@@ -32,6 +34,8 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/orders', orderRoutes);
+app.use("/api/reviews", reviewRoutes)
+
 
 // Test Route
 app.get('/', (req, res) => {

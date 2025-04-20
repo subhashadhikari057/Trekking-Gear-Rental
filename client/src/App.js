@@ -21,6 +21,9 @@ import AdminAddProduct from './pages/AdminAddProduct';
 import AdminChat from './pages/AdminChat'; // ✅ Import
 import ChatWidget from './components/ChatWidget'; // ✅ Correct default import
 import Footer from './components/Footer';
+import HowItWorksPage from "./pages/HowItWorksPage"
+import AboutUs from "./pages/AboutUs"
+import FAQPage from './pages/FAQPage';
 
 function AppContent() {
   const location = useLocation();
@@ -70,6 +73,11 @@ function AppContent() {
           <Route path="/admin/products" element={<AdminAllProducts />} />
           <Route path="/admin/add-product" element={<AdminAddProduct />} />
           <Route path="/admin/chat" element={<AdminChat />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/how-it-works" element={<HowItWorksPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+
+          
         </Routes>
 
         {/* ✅ Only render chat widget after hydration */}

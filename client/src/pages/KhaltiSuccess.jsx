@@ -34,7 +34,7 @@ const KhaltiSuccess = () => {
 
         toast.success('✅ Payment successful and order placed!');
         localStorage.removeItem('checkout_user_info');
-        navigate('/success');
+        navigate('/');
       } catch (err) {
         console.error('❌ Order save failed:', err.response?.data || err.message);
         toast.error('Failed to place order after payment');

@@ -26,8 +26,8 @@ const Navbar = () => {
       <nav className="hidden md:flex space-x-8 font-medium">
         <Link to="/browse-gear" className="hover:text-[#4f45e4]">Browse Gear</Link>
         <Link to="/how-it-works" className="hover:text-[#4f45e4]">How It Works</Link>
-        <Link to="/about" className="hover:text-[#4f45e4]">About Us</Link>
-        <Link to="/contact" className="hover:text-[#4f45e4]">Contact</Link>
+        <Link to="/about-us" className="hover:text-[#4f45e4]">About Us</Link>
+        <Link to="/faq" className="hover:text-[#4f45e4]">FAQ</Link>
       </nav>
 
       {/* Right Side */}
