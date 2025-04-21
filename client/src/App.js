@@ -91,7 +91,7 @@ function AppContent() {
 function App() {
   return (
     <>
-      <Toaster position="top-right" />
+      <Toaster position="top-center" />
       <Router>
         <AppContent />
       </Router>
