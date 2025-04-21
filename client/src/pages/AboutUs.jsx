@@ -1,4 +1,14 @@
-import React from "react"
+import React from "react";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
+  }),
+};
 
 const AboutUs = () => {
   return (
@@ -12,7 +22,13 @@ const AboutUs = () => {
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#4f45e4]/90 to-[#4f45e4]/70"></div>
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto"
+        >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
             About TrailGear
           </h1>
@@ -20,46 +36,66 @@ const AboutUs = () => {
             We're passionate about making trekking affordable and accessible
             through high-quality gear rentals and friendly support.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Mission & Values */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-3xl font-bold text-center text-gray-900 mb-4"
+          >
             Our Mission & Values
-          </h2>
-          <p className="text-gray-600 max-w-2xl text-center mx-auto mb-12">
+          </motion.h2>
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="text-gray-600 max-w-2xl text-center mx-auto mb-12"
+          >
             At TrailGear, we believe everyone should experience the mountains
             without owning expensive gear. We focus on accessibility,
             sustainability, and community.
-          </p>
+          </motion.p>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white shadow-md p-6 rounded-lg text-center">
-              <div className="text-[#4f45e4] text-4xl mb-4">🏕️</div>
-              <h3 className="text-xl font-semibold mb-2">Adventure for All</h3>
-              <p className="text-gray-600 text-sm">
-                We ensure budget-friendly access to essential trekking gear so
-                every explorer can start their journey.
-              </p>
-            </div>
-            <div className="bg-white shadow-md p-6 rounded-lg text-center">
-              <div className="text-[#4f45e4] text-4xl mb-4">🛡️</div>
-              <h3 className="text-xl font-semibold mb-2">Quality & Safety</h3>
-              <p className="text-gray-600 text-sm">
-                All gear is cleaned and inspected after each use, so you trek
-                worry-free.
-              </p>
-            </div>
-            <div className="bg-white shadow-md p-6 rounded-lg text-center">
-              <div className="text-[#4f45e4] text-4xl mb-4">🌿</div>
-              <h3 className="text-xl font-semibold mb-2">Eco-Friendly</h3>
-              <p className="text-gray-600 text-sm">
-                Renting reduces waste. We support sustainable practices in the
-                outdoor gear community.
-              </p>
-            </div>
+            {[
+              {
+                icon: "🏕️",
+                title: "Adventure for All",
+                desc: "We ensure budget-friendly access to essential trekking gear so every explorer can start their journey.",
+              },
+              {
+                icon: "🛡️",
+                title: "Quality & Safety",
+                desc: "All gear is cleaned and inspected after each use, so you trek worry-free.",
+              },
+              {
+                icon: "🌿",
+                title: "Eco-Friendly",
+                desc: "Renting reduces waste. We support sustainable practices in the outdoor gear community.",
+              },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={idx + 2}
+                className="bg-white shadow-md p-6 rounded-lg text-center"
+              >
+                <div className="text-[#4f45e4] text-4xl mb-4">{item.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -67,8 +103,16 @@ const AboutUs = () => {
       {/* Our Story */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
-          <div className="w-full md:w-1/2">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Story</h2>
+          <motion.div
+            className="w-full md:w-1/2"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Our Story
+            </h2>
             <p className="text-gray-600 mb-4">
               TrailGear began with a small team of trekkers who realized that
               many friends wanted to explore but were limited by gear costs.
@@ -82,41 +126,55 @@ const AboutUs = () => {
               Our dream is simple: break barriers, build community, and fuel
               your passion for the trails.
             </p>
-          </div>
-          <div className="w-full md:w-1/2">
+          </motion.div>
+          <motion.div
+            className="w-full md:w-1/2"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+          >
             <img
               src="https://st2.depositphotos.com/1017986/7761/i/950/depositphotos_77612174-stock-photo-group-of-friends-with-backpacks.jpg"
               alt="Our team on trek"
               className="rounded-xl shadow-lg"
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="bg-[#4f45e4] text-white py-16">
+      <motion.section
+        className="bg-[#4f45e4] text-white py-16"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeUp}
+      >
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 text-center gap-6">
-          <div>
-            <p className="text-4xl font-bold">5+</p>
-            <p className="text-white/80">Years in service</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold">10,000+</p>
-            <p className="text-white/80">Happy trekkers</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold">2,000+</p>
-            <p className="text-white/80">Gears available</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold">4.9★</p>
-            <p className="text-white/80">Average Rating</p>
-          </div>
+          {[
+            ["5+", "Years in service"],
+            ["10,000+", "Happy trekkers"],
+            ["2,000+", "Gears available"],
+            ["4.9★", "Average Rating"],
+          ].map(([num, label], i) => (
+            <motion.div key={i} custom={i} variants={fadeUp}>
+              <p className="text-4xl font-bold">{num}</p>
+              <p className="text-white/80">{label}</p>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Call to Action */}
-      <section className="py-16">
+      <motion.section
+        className="py-16"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeUp}
+      >
         <div className="bg-gradient-to-r from-[#4f45e4] to-[#6c63ff] text-white text-center p-10 rounded-xl max-w-5xl mx-auto shadow-lg">
           <h2 className="text-3xl font-bold mb-4">
             Ready to Begin Your Journey?
@@ -132,9 +190,9 @@ const AboutUs = () => {
             Browse Gear
           </a>
         </div>
-      </section>
+      </motion.section>
     </div>
-  )
-}
+  );
+};
 
-export default AboutUs
+export default AboutUs;

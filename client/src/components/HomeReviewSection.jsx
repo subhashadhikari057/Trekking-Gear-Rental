@@ -3,6 +3,16 @@ import axios from "axios"
 import { Star } from "lucide-react"
 import { formatDistanceToNow } from "date-fns"
 import { useNavigate } from "react-router-dom"
+import { motion } from "framer-motion"
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.15, duration: 0.5 },
+  }),
+}
 
 const HomeReviewSection = () => {
   const [reviews, setReviews] = useState([])
@@ -88,19 +98,35 @@ const HomeReviewSection = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto py-16 px-4">
-      <h2 className="text-3xl font-bold text-[#4f45e4] mb-4 text-center">Customer Experiences</h2>
-      <p className="text-gray-600 max-w-2xl mx-auto text-center mb-12">
+    <motion.div
+      className="max-w-5xl mx-auto py-16 px-4"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+    >
+      <motion.h2 className="text-3xl font-bold text-[#4f45e4] mb-4 text-center">
+        Customer Experiences
+      </motion.h2>
+      <motion.p className="text-gray-600 max-w-2xl mx-auto text-center mb-12">
         See what our customers are saying about their experiences with our trekking gear rental service. We pride
         ourselves on quality equipment and excellent service.
-      </p>
+      </motion.p>
 
       {/* Reviews */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        {reviews.map((r) => (
-          <div
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false,amount:0.5 }}
+        variants={fadeUp}
+      >
+        {reviews.map((r, i) => (
+          <motion.div
             key={r._id}
             className="bg-white shadow-md rounded-lg overflow-hidden h-full flex flex-col justify-between"
+            custom={i}
+            variants={fadeUp}
           >
             <div className="flex items-start gap-4 p-4 bg-gradient-to-r from-[#4f45e4]/10 to-[#4f45e4]/5">
               <div className="h-10 w-10 flex items-center justify-center rounded-full bg-[#4f45e4] text-white font-bold text-lg">
@@ -122,14 +148,19 @@ const HomeReviewSection = () => {
               </div>
             </div>
             <div className="p-4 text-sm text-gray-700 flex-1">{r.comment}</div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Submission Form */}
-      <div className="bg-white p-6 rounded-lg shadow border">
+      <motion.div
+        className="bg-white p-6 rounded-lg shadow border"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeUp}
+      >
         <h3 className="text-xl font-bold mb-4">Share Your Experience</h3>
-
         {successMsg && <p className="mb-4 text-green-600">{successMsg}</p>}
 
         {!user ? (
@@ -203,10 +234,17 @@ const HomeReviewSection = () => {
             >
               {isSubmitting ? "Submitting..." : "Submit Review"}
             </button>
+            
           </form>
         )}
-      </div>
-    </div>
+      </motion.div>
+      <button
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+  className="mt-12 mx-auto block bg-[#B4B1EF] text-white px-5 py-2 rounded hover:bg-[#3a35cc] transition"
+>
+Scroll Up
+</button>
+    </motion.div>
   )
 }
 

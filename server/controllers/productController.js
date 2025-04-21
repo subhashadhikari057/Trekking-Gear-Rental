@@ -70,6 +70,32 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+// ✅ Controller
+const searchProducts = async (req, res) => {
+  try {
+    const { q } = req.query;
+
+    if (!q) {
+      return res.status(400).json({ message: 'Search query is required' });
+    }
+
+    const regex = new RegExp(q, 'i'); // case-insensitive match
+
+    const results = await Product.find({
+      $or: [
+        { name: { $regex: regex } },
+        { category: { $regex: regex } },
+        { description: { $regex: regex } }, // optional
+      ],
+    });
+
+    res.json(results);
+  } catch (err) {
+    console.error('Search error:', err);
+    res.status(500).json({ message: 'Search failed' });
+  }
+};
+
 
 module.exports = {
   getAllProducts,
@@ -77,5 +103,6 @@ module.exports = {
   getProductsByCategory,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  searchProducts
 };

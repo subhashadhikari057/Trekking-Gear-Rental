@@ -1,12 +1,22 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   Search,
   ShoppingCart,
   CreditCard,
   PackageCheck,
   ArrowRight,
-} from "lucide-react"
+} from "lucide-react";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
+  }),
+};
 
 const HowItWorks = () => {
   return (
@@ -14,19 +24,33 @@ const HowItWorks = () => {
       {/* Hero Section */}
       <section className="relative bg-[url('https://alpineecotrek.com/wp-content/uploads/2023/01/abc-pokhara-gal1.webp')] bg-cover bg-center py-24">
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 mx-auto px-4 text-center text-white">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          className="relative z-10 mx-auto px-4 text-center text-white"
+        >
           <h1 className="text-5xl font-bold mb-4">How Our Rental Process Works</h1>
           <p className="text-lg max-w-2xl mx-auto mb-8">
             Get the gear you need for your adventure without the hassle of buying and storing equipment.
           </p>
-          
-        </div>
+        </motion.div>
       </section>
 
       {/* Process Steps */}
       <section id="steps" className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Four Simple Steps</h2>
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Four Simple Steps
+          </motion.h2>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
               { icon: Search, title: "Explore", desc: "Browse our collection of high-quality trekking gear." },
@@ -34,20 +58,34 @@ const HowItWorks = () => {
               { icon: CreditCard, title: "Buy", desc: "Securely check out with flexible payment options." },
               { icon: PackageCheck, title: "Returns", desc: "Hassle-free return after your adventure." },
             ].map((step, i) => (
-              <div key={i} className="flex flex-col items-center">
+              <motion.div
+                key={i}
+                className="flex flex-col items-center"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={i + 1}
+              >
                 <div className="mb-4 flex items-center justify-center w-16 h-16 bg-[#4f45e4]/10 text-[#4f45e4] rounded-full">
                   <step.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-semibold mb-1">{i + 1}. {step.title}</h3>
                 <p className="text-gray-600">{step.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="bg-[#4f45e4] py-16 text-white text-center">
+      <motion.section
+        className="bg-[#4f45e4] py-16 text-white text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeUp}
+      >
         <h2 className="text-3xl font-bold mb-4">Ready to Start Your Adventure?</h2>
         <p className="max-w-2xl mx-auto mb-8">
           Browse our extensive collection of premium trekking gear and get ready to conquer the trails.
@@ -58,9 +96,9 @@ const HowItWorks = () => {
         >
           Browse Gear <ArrowRight className="h-4 w-4" />
         </Link>
-      </section>
+      </motion.section>
     </div>
-  )
-}
+  );
+};
 
-export default HowItWorks
+export default HowItWorks;

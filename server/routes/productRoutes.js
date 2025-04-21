@@ -6,10 +6,15 @@ const {
   getProductsByCategory,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  searchProducts
 } = require('../controllers/productController');
 
 const { protect, isAdmin } = require('../middleware/authMiddleware');
+
+
+// Example search route
+router.get('/search', searchProducts);
 
 // Public routes
 router.get('/', getAllProducts);
@@ -20,5 +25,8 @@ router.get('/category/:category', getProductsByCategory);
 router.post('/', protect, isAdmin, createProduct);
 router.put('/:id', protect, isAdmin, updateProduct);
 router.delete('/:id', protect, isAdmin, deleteProduct);
+
+
+
 
 module.exports = router;

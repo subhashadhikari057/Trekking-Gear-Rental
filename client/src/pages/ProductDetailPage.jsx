@@ -142,12 +142,12 @@ const ProductDetailPage = () => {
             >
               Add to Cart
             </button>
-            <button
+            {/* <button
               className="w-full border border-[#4f45e4] text-[#4f45e4] py-2 px-4 rounded hover:bg-[#f0eeff] transition"
               disabled={!product.availability}
             >
               Rent Now
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

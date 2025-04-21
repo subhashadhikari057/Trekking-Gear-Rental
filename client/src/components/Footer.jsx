@@ -20,12 +20,12 @@ const Footer = () => {
               <li className="flex items-start gap-3 group">
                 <MapPin className="h-5 w-5 mt-1 text-[#4338ca] group-hover:text-indigo-400 transition-colors" />
                 <span className="group-hover:text-white transition-colors">
-                  123 Adventure Way, Mountain View, CA 94043
+                  Gyaneshwor,Kathmandu
                 </span>
               </li>
               <li className="flex items-center gap-3 group">
                 <Phone className="h-5 w-5 text-[#4338ca] group-hover:text-indigo-400 transition-colors" />
-                <span className="group-hover:text-white transition-colors">(555) 123-4567</span>
+                <span className="group-hover:text-white transition-colors">9800000000</span>
               </li>
               <li className="flex items-center gap-3 group">
                 <Mail className="h-5 w-5 text-[#4338ca] group-hover:text-indigo-400 transition-colors" />
@@ -42,10 +42,10 @@ const Footer = () => {
             </div>
             <ul className="space-y-3 text-slate-300">
               <li><Link to="/" className="hover:text-[#4338ca] hover:translate-x-1 duration-200">Home</Link></li>
-              <li><Link to="/categories" className="hover:text-[#4338ca] hover:translate-x-1 duration-200">Gear Categories</Link></li>
-              <li><Link to="/rental-process" className="hover:text-[#4338ca] hover:translate-x-1 duration-200">Rental Process</Link></li>
-              <li><Link to="/contact" className="hover:text-[#4338ca] hover:translate-x-1 duration-200">Contact Us</Link></li>
-              <li><Link to="/faqs" className="hover:text-[#4338ca] hover:translate-x-1 duration-200">FAQs</Link></li>
+              <li><Link to="/browse-gear" className="hover:text-[#4338ca] hover:translate-x-1 duration-200">Browse Gear</Link></li>
+              <li><Link to="/how-it-works" className="hover:text-[#4338ca] hover:translate-x-1 duration-200">How It Works</Link></li>
+              <li><Link to="/about-us" className="hover:text-[#4338ca] hover:translate-x-1 duration-200">About Us</Link></li>
+              <li><Link to="/FAQ" className="hover:text-[#4338ca] hover:translate-x-1 duration-200">FAQs</Link></li>
             </ul>
           </div>
 
