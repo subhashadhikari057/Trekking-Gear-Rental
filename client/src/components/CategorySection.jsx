@@ -58,7 +58,8 @@ const FeaturedGear = () => {
             >
               <Link
                 to={`/gear/${product._id}`}
-                className="w-full max-w-[280px] h-[340px] flex flex-col bg-white rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer"
+                className="w-full max-w-[300px] h-[300px] flex flex-col bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 cursor-pointer"
+
               >
                 {/* Fixed image box */}
                 <div className="h-48 w-full flex items-center justify-center bg-white rounded-t-xl overflow-hidden">
@@ -70,12 +71,12 @@ const FeaturedGear = () => {
                 </div>
 
                 {/* Card content */}
-                <div className="p-4 text-center flex-1 flex flex-col justify-between">
+                <div className="p-4 text-center flex-1 flex flex-col justify-start">
                   <div>
                     <h3 className="text-lg font-semibold text-[#4f45e4]">{product.name}</h3>
                     <p className="text-sm text-gray-500">{product.category}</p>
                   </div>
-                  <p className="text-sm font-bold mt-2 text-black">Rs {product.pricePerDay} / day</p>
+                  <p className="text-sm font-bold mt-2 text-slate-500">Rs {product.pricePerDay} / day</p>
                 </div>
               </Link>
             </motion.div>
