@@ -15,7 +15,7 @@ const ProductDetailPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/api/products/${id}`);
+        const res = await axios.get(`/api/products/${id}`);
         setProduct(res.data);
       } catch (err) {
         setError('Failed to load product.');
@@ -47,7 +47,7 @@ const ProductDetailPage = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:3001/api/cart',
+        '/api/cart',
         {
           productId: product._id,
           quantity,

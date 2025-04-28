@@ -1,4 +1,5 @@
 // src/App.js
+import axios from 'axios'; // ✅ Added this line at very top
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -24,6 +25,9 @@ import Footer from './components/Footer';
 import HowItWorksPage from "./pages/HowItWorksPage"
 import AboutUs from "./pages/AboutUs"
 import FAQPage from './pages/FAQPage';
+
+// ✅ Set axios base URL globally
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 function AppContent() {
   const location = useLocation();
@@ -76,8 +80,6 @@ function AppContent() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/faq" element={<FAQPage />} />
-
-          
         </Routes>
 
         {/* ✅ Only render chat widget after hydration */}

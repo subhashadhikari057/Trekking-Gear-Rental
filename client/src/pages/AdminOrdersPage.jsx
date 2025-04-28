@@ -9,7 +9,7 @@ export default function AdminOrdersPage() {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem('token');
-        const { data } = await axios.get('http://localhost:3001/api/orders', {
+        const { data } = await axios.get('/api/orders', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setOrders(data);
@@ -25,7 +25,7 @@ export default function AdminOrdersPage() {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:3001/api/orders/${orderId}/status`,
+        `/api/orders/${orderId}/status`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

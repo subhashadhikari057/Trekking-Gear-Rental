@@ -10,7 +10,7 @@ export default function AdminAllProducts() {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3001/api/products');
+      const { data } = await axios.get('/api/products');
       setProducts(data);
     } catch (err) {
       toast.error('Failed to fetch products');

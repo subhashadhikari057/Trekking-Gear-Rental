@@ -14,7 +14,7 @@ const CheckoutPage = () => {
   const fetchCart = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:3001/api/cart', {
+      const res = await axios.get('/api/cart', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCart(res.data.items || []);
@@ -42,7 +42,7 @@ const CheckoutPage = () => {
       const token = localStorage.getItem('token');
 
       const payload = {
-        return_url: 'http://localhost:3000/khalti-success',
+        return_url: '/khalti-success',
         purchase_order_id: 'order_' + new Date().getTime(),
         purchase_order_name: 'Trekking Gear Rental',
         amount: totalInPaisa,
@@ -54,7 +54,7 @@ const CheckoutPage = () => {
       };
 
       const { data } = await axios.post(
-        'http://localhost:3001/api/payment/initiate',
+        '/api/payment/initiate',
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -81,7 +81,7 @@ const CheckoutPage = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:3001/api/orders',
+        '/api/orders',
         {
           name,
           address,

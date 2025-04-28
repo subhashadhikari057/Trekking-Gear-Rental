@@ -30,7 +30,7 @@ export default function AdminAddProduct() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:3001/api/products', formData, {
+      await axios.post('/api/products', formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('✅ Product added!');

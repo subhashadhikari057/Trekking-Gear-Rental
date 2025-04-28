@@ -9,7 +9,7 @@ const CartPage = () => {
   const fetchCartItems = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:3001/api/cart', {
+      const res = await axios.get('/api/cart', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCartItems(res.data.items || []);
@@ -23,7 +23,7 @@ const CartPage = () => {
   const handleRemove = async (itemId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:3001/api/cart/${itemId}`, {
+      await axios.delete(`/api/cart/${itemId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Item removed');

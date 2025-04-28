@@ -15,13 +15,13 @@ export default function Dashboard() {
     const fetchProfileAndOrders = async () => {
       try {
         const token = localStorage.getItem('token');
-        const { data: profile } = await axios.get('http://localhost:3001/api/users/profile', {
+        const { data: profile } = await axios.get('/api/users/profile', {
           headers: { Authorization: `Bearer ${token}` }
         });
 
         setRole(profile.role);
 
-        const { data: myOrders } = await axios.get('http://localhost:3001/api/orders/my', {
+        const { data: myOrders } = await axios.get('/api/orders/my', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setOrders(myOrders);

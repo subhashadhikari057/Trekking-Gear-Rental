@@ -9,7 +9,7 @@ export default function AdminUsersPage() {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.get('http://localhost:3001/api/users', {
+      const { data } = await axios.get('/api/users', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(data);
@@ -26,7 +26,7 @@ export default function AdminUsersPage() {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:3001/api/users/${userId}/role`,
+        `/api/users/${userId}/role`,
         { role: newRole },
         { headers: { Authorization: `Bearer ${token}` } }
       );

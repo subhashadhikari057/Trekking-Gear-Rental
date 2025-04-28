@@ -27,7 +27,7 @@ const HomeReviewSection = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/api/reviews")
+        const res = await axios.get("/api/reviews")
         setReviews(res.data.slice(0, 6))
       } catch (err) {
         console.error("Error fetching reviews:", err)

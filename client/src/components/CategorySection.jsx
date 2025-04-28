@@ -9,7 +9,7 @@ const FeaturedGear = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/api/products")
+        const res = await axios.get("/api/products")
         const allProducts = res.data
         const shuffled = allProducts.sort(() => 0.5 - Math.random())
         setProducts(shuffled.slice(0, 6))

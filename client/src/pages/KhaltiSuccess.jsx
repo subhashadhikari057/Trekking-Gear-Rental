@@ -22,7 +22,7 @@ const KhaltiSuccess = () => {
 
       try {
         await axios.post(
-          'http://localhost:3001/api/orders',
+          '/api/orders',
           {
             ...userInfo,
             paymentMethod: 'Khalti',
