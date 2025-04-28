@@ -1,5 +1,13 @@
 {
+  "name": "trekgearrental",
+  "private": true,
   "dependencies": {
     "react-hot-toast": "^2.5.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "start": "concurrently -n SERVER,CLIENT -c red,blue \"npm run dev --prefix server\" \"npm start --prefix client\""
   }
 }
